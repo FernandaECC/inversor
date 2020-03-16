@@ -46,7 +46,7 @@ int main() {
 
   for (int i=0; i<(tamanho); i++) {
     c = pop();
-    printf("%c\n", c);
+    printf("%c", c);
   }
  printf("%c", '\n');
  
