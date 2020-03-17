@@ -13,7 +13,6 @@ char buffer[100];
 
 
 int pont = 0;
-int tamanho = 0; 
 int play = 1;
 char c;
 char letra;
@@ -27,62 +26,58 @@ void push(char c) {
 }
  
 char pop() {
-  char c;
+  char c1;
 /* Remove caractere do topo da pilha */
   if (n_pilha >= 0) {
     n_pilha--;
-    c = pilha[n_pilha];
+    c1 = pilha[n_pilha];
   }
-  return c;
+  return c1;
 }
  
  
  
 int main() {
+  char c1;
+  int lop = 0;
   fgets(buffer, tam_buffer, stdin);
   //printf("%s", buffer);
 
 
 
   while(play){
-
     while(buffer[pont] != '\n' && buffer[pont] != ' ') {//se for uma letra
       // enquanto nao chegar ao fim da frase e
       // enquanto nao encontrar um espaco vai avancando a posicao
-      push(c);
+      push(buffer[pont]);
       pont++;
-      
+     
     }
 
     //se a pilha não esta vazia
-    
-    if(n_pilha> 0){
-
-    
-        //encontrou um espaco
-        if(buffer[pont] == ' '){
-          printf("%c", ' ');
-          while(tamanho < pont ) {
-            c = pop();
-            printf("%c", c);
-            tamanho++;
-          }
+    //encontrou um espaco
+      if(buffer[pont] == ' '){
+        int r = n_pilha;
+        for (int i=0; i<r; i++) {
+          letra = pop();
+          printf("%c", letra);
         }
-      
-      //chegou ao final da frase\palavra
-      if(buffer[pont] == '\n'){
-        play = 0;
-        while(tamanho < pont ) {
-            c = pop();
-            printf("%c", c);
-            tamanho++;
-          }
-        }
-        printf("%c", '\n'); 
+        printf(" ");
+    }
+    
+    //chegou ao final da frase\palavra
+    if(buffer[pont] == '\n'){
+      int r = n_pilha;
+      play = 0;
+      for (int i=0; i<r; i++) {
+        letra = pop();
+        printf("%c", letra);
       }
-      pont++;
-    }  
+      printf("%c", '\n');
       
-    return 0;
+    }
+    pont++;
+    
   }
-  
+  return 0;
+}
